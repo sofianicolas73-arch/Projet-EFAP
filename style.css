@@ -1,21 +1,156 @@
-.header {
-   display: flex; 
-   justify-content: space-between;
-   align-items: center;
+/* =============================================
+   VARIABLES CSS
+   On définit les couleurs et polices ici pour
+   pouvoir les changer facilement partout.
+   ============================================= */
+:root {
+    --couleur-fond:       #faf9f7;
+    --couleur-texte:      #1a1a1a;
+    --couleur-accent:     #c0392b;   /* rouge profond */
+    --couleur-gris:       #666;
+    --police-titre:       'Playfair Display', serif;
+    --police-texte:       'Inter', sans-serif;
 }
 
+/* =============================================
+   RESET DE BASE
+   Supprime les marges par défaut du navigateur
+   ============================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* le padding ne grossit pas la boîte */
+}
+
+body {
+    background-color: var(--couleur-fond);
+    color: var(--couleur-texte);
+    font-family: var(--police-texte);
+    font-size: 16px;
+    line-height: 1.6; /* espacement entre les lignes */
+}
+
+/* =============================================
+   CONTAINER
+   Centre le contenu et limite sa largeur
+   ============================================= */
+.container {
+    width: 85%;
+    max-width: 1100px;  /* ← ne dépasse jamais 1100px sur grands écrans */
+    margin: 0 auto;     /* auto à gauche + droite = centrage horizontal */
+}
+
+/* =============================================
+   HEADER & NAVIGATION
+   ============================================= */
+.header {
+    display: flex;                  /* les enfants se mettent en ligne */
+    justify-content: space-between; /* logo à gauche, menu à droite */
+    align-items: center;            /* centrage vertical */
+    padding: 24px 0;
+}
+
+.logo {
+    font-family: var(--police-titre);
+    font-size: 2rem;
+    letter-spacing: 4px; /* espace entre les lettres */
+    color: var(--couleur-texte);
+}
+
+/* La <nav> avec les liens */
 .menu {
     display: flex;
-    justify-content: space-between;
-    gap: 32px;
+    gap: 32px; /* espace entre chaque lien */
 }
 
-.container {
-    width: 80%;
-    margin: 0 auto;
+/* Style des liens de navigation */
+.menu a {
+    text-decoration: none;        /* supprime le soulignement */
+    color: var(--couleur-texte);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;       /* animation douce au survol */
 }
 
+/* Au survol du lien, la couleur change */
+.menu a:hover {
+    color: var(--couleur-accent);
+}
+
+/* La ligne de séparation */
+hr {
+    border: none;
+    border-top: 1px solid #e0ddd9;
+    margin: 0;
+}
+
+/* =============================================
+   IMAGE HERO (grande image en haut)
+   ============================================= */
 .full_width {
     width: 100%;
-    object-fit: cover;
+    object-fit: cover; /* l'image remplit l'espace sans se déformer */
+}
+
+.hero-image {
+    height: 480px;         /* hauteur fixe pour un bel effet */
+    margin-top: 48px;
+    border-radius: 4px;    /* coins légèrement arrondis */
+    display: block;        /* supprime l'espace sous l'image */
+}
+
+/* =============================================
+   TEXTE D'INTRODUCTION
+   ============================================= */
+.intro {
+    margin-top: 32px;
+    margin-bottom: 48px;
+    max-width: 700px;      /* ← ligne pas trop longue = plus lisible */
+    color: var(--couleur-gris);
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+/* =============================================
+   GALERIE D'IMAGES
+   CSS Grid = la meilleure façon d'aligner des images
+   ============================================= */
+.galery {
+    display: grid;
+
+    /* 2 colonnes de même largeur.
+       "1fr" = 1 fraction de l'espace disponible */
+    grid-template-columns: 1fr 1fr;
+
+    gap: 16px;             /* espace entre les images */
+    margin-bottom: 64px;
+}
+
+/* Les images dans la galerie */
+.galery img {
+    width: 100%;           /* occupe toute la colonne */
+    height: 320px;
+    object-fit: cover;     /* recadre sans déformer */
+    border-radius: 4px;
+    display: block;
+
+    /* Légère animation au survol */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.galery img:hover {
+    transform: scale(1.02);  /* grossit légèrement */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+.footer {
+    background-color: var(--couleur-texte);
+    color: #aaa;
+    text-align: center;
+    padding: 24px;
+    font-size: 0.85rem;
 }
